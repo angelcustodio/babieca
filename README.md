@@ -15,7 +15,7 @@ The functionality is managed by just 4 elements:
 - **user_id**: A user can have a lot of contents started and in extension, with a position stored.
 - **content_id**: Strictly related with the `user_id` so a user can have a lot of contents and a content can be played by a lot of users.
 
-With this components you'll be able to capture all the resumes within a playback by adding a heartbeat on your client. `The recommendation is a ratio of 1 beat per 30 secons`, but regarding your systems configuration you can decrease it or increase it, do what you want but be careful with the amount of requests you may generate.
+With this components you'll be able to capture all the resumes within a playback by adding a heartbeat on your client. `The recommendation is a ratio of 1 beat per 30 seconds`, but regarding your systems configuration you can decrease it or increase it, do what you want but be careful with the amount of requests you may generate.
 
 ## API methods
 
