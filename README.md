@@ -2,7 +2,7 @@
 
 # Babieca
 
-**Babieca** is a very light and lightning fast service that provides a crossplatform resume playback method that can be attached to a current API, website or making requests separatedly in an asynchronous way.
+**Babieca** is a lightweight and lightning fast service that provides a crossplatform resume playback method that can be attached to a current API, website or making requests separatedly in an asynchronous way.
 
 ## Theory
 
@@ -25,15 +25,18 @@ Returns the `id` and the `position` on a concrete content of a concrete user if 
 
 ### POST /position
 
+Creates a new position if there's no response within the GET.
+
 *Parameters:*
 
 - **user_id**: The user's identification to relate it with the content.
 - **content_id**: The content's number reference to relate it with a user.
 - **position**: The lapse of time played on a content in seconds.
 
-### PUT /position
+### PUT /position/:id
+
+If the GET method responses with a `position`, you can update it by this method using the `id`.
 
 *Parameters:*
 
-- **id**: The position ID retrieved in first place with the GET method, so you can updated directly by its unique identification.
 - **position**: The lapse of time played on a content in seconds.
