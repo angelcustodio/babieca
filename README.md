@@ -1,3 +1,5 @@
+![Babieca](https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20667/97004/nvXkUGXA0G4zpsS/photo.png)
+
 # Babieca
 
 **Babieca** is a very light and lightning fast service that provides a crossplatform resume playback method that can be attached to a current API, website or making requests separatedly in an asynchronous way.
