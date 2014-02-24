@@ -15,11 +15,11 @@ var mongoose = require('mongoose'),
       firstbeat_time: Date,
       lastbeat_time: Date,
       beats: Number,
-      // Add the capability to modify this depending on the content_type
+      // Add the capability to modify the expiration depending on the transaction_type
       created_at: {
         type: Date,
         default: Date.now(),
-        expires: 100
+        expires: 86400
       }
     });
 

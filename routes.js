@@ -25,16 +25,24 @@ module.exports = function(app){
 
   newPosition = function(request, response){
 
-    var position = new ResumePlayback({
-      user_id:          request.body.user_id,
-      content_id:       request.body.content_id,
-      content_type:     request.body.content_type,
-      transaction_type: request.body.transaction_type,
-      lapse:            request.body.lapse,
-      firstbeat_time:   Date.now(),
-      beats:            '1'
-    });
+    // if (request.body.transaction_type === 'rental'){
+    //   seconds = 30;
+    // } else if (request.body.transaction_type === 'purchase'){
+    //   seconds = 90;
+    // } else if (request.body.transaction_type === 'subscription'){
+    //   seconds = 180;
+    // }
 
+    var position = new ResumePlayback({
+      user_id:            request.body.user_id,
+      content_id:         request.body.content_id,
+      content_type:       request.body.content_type,
+      transaction_type:   request.body.transaction_type,
+      lapse:              request.body.lapse,
+      firstbeat_seconds:  Date.now(),
+      beats:              '1'
+    });
+    console.log(seconds);
     position.save(function(error){
       if(error) console.log('ERROR: ' + error);
     });
