@@ -6,7 +6,7 @@
   "main": "app.js",
   "dependencies":
     {
-      "restify": "~2.6.0",
-      "save": "0.0.19"
+      "express": "latest",
+      "mongoose": "latest"
     }
 }
