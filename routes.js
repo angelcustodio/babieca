@@ -12,20 +12,21 @@ module.exports = function(app){
     });
   };
 
-  // GET One
+  // GET Position ID
   getPosition = function(request, response){
-    ResumePlayback.findById(request.params.id, function(error, position){
-      if(!error)
-        response.send(position);
-      else
-        console.log('ERROR: ' + error);
-    });
+    ResumePlayback.findOne({
+        'user_id': request.params.user_id,
+        'content_id': request.params.content_id
+      }, function(error, position){
+        if(!error)
+          response.send(position.id);
+        else
+          console.log('ERROR: ' + error);
+      });
   };
 
-  // POST
+  // POST a new position
   newPosition = function(request, response){
-    console.log('POST');
-    console.log(request.body);
 
     var position = new ResumePlayback({
       content_id:   request.body.content_id,
@@ -35,32 +36,26 @@ module.exports = function(app){
     });
 
     position.save(function(error){
-      if(!error)
-        console.log('New position saved!');
-      else
-        console.log('ERROR: ' + error);
+      if(error) console.log('ERROR: ' + error);
     });
 
     response.send(position);
 
   };
 
-  // PUT
+  // PUT a position
   updatePosition = function(request, response){
     ResumePlayback.findById(request.params.id, function(error, position){
       position.lapse = request.body.lapse;
       position.save(function(error){
-        if(!error)
-          console.log('Position updated!');
-        else
-          console.log('ERROR: ' + error);
+        if(error) console.log('ERROR: ' + error);
       });
     });
   };
 
   // Routes
   app.get('/positions', allPositions);
-  app.get('/position/:id', getPosition);
+  app.get('/position/:user_id/:content_id', getPosition);
   app.post('/position', newPosition);
   app.put('/position/:id', updatePosition);
 
