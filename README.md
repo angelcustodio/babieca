@@ -60,3 +60,7 @@ If the GET method responses with a `lapse`, you can update it by this method usi
 *Parameters:*
 
 - **lapse**: The amount of time played on a content in seconds.
+
+#### Note
+
+All the request must include `application/json` as its `Content-Type`.
