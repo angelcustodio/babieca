@@ -12,14 +12,20 @@ var mongoose = require('mongoose'),
         enum: ['rental', 'purchase', 'subscription']
       },
       lapse: Number,
-      firstbeat_time: Date,
-      lastbeat_time: Date,
+      firstbeat_date: Date,
+      lastbeat_date: Date,
       beats: Number,
-      // Add the capability to modify the expiration depending on the transaction_type
-      created_at: {
+      rental_date: {
         type: Date,
-        default: Date.now(),
-        expires: 86400
+        expireAfterSeconds: 30
+      },
+      purchase_date: {
+        type: Date,
+        expireAfterSeconds: 90
+      },
+      subscription_date: {
+        type: Date,
+        expireAfterSeconds: 200
       }
     });
 

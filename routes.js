@@ -11,9 +11,31 @@ module.exports = function(app){
     });
   };
 
+  getUserPositions = function(request, response){
+    ResumePlayback.find({
+        'user_id':    request.params.user_id
+      }, function(error, positions){
+        if(!error)
+          response.send(positions);
+        else
+          console.log('ERROR: ' + error);
+      });
+  };
+
+  getContentPositions = function(request, response){
+    ResumePlayback.find({
+        'content_id':    request.params.content_id
+      }, function(error, positions){
+        if(!error)
+          response.send(positions);
+        else
+          console.log('ERROR: ' + error);
+      });
+  };
+
   getPosition = function(request, response){
     ResumePlayback.findOne({
-        'user_id': request.params.user_id,
+        'user_id':    request.params.user_id,
         'content_id': request.params.content_id
       }, function(error, position){
         if(!error)
@@ -24,25 +46,26 @@ module.exports = function(app){
   };
 
   newPosition = function(request, response){
-
-    // if (request.body.transaction_type === 'rental'){
-    //   seconds = 30;
-    // } else if (request.body.transaction_type === 'purchase'){
-    //   seconds = 90;
-    // } else if (request.body.transaction_type === 'subscription'){
-    //   seconds = 180;
-    // }
-
+    if (request.body.transaction_type === 'rental'){
+      var rental_date_var = Date.now();
+    } else if (request.body.transaction_type === 'purchase'){
+      var purchase_date_var = Date.now();
+    } else if (request.body.transaction_type === 'subscription'){
+      var subscription_date_var = Date.now();
+    }
     var position = new ResumePlayback({
       user_id:            request.body.user_id,
       content_id:         request.body.content_id,
       content_type:       request.body.content_type,
       transaction_type:   request.body.transaction_type,
       lapse:              request.body.lapse,
-      firstbeat_seconds:  Date.now(),
-      beats:              '1'
+      firstbeat_date:     Date.now(),
+      beats:              '1',
+      rental_date:         null || rental_date_var,
+      purchase_date:       null || purchase_date_var,
+      subscription_date:   null || subscription_date_var
     });
-    console.log(seconds);
+
     position.save(function(error){
       if(error) console.log('ERROR: ' + error);
     });
@@ -55,7 +78,7 @@ module.exports = function(app){
     ResumePlayback.findById(request.params.id, function(error, position){
 
       position.lapse          = request.body.lapse;
-      position.lastbeat_time  = Date.now();
+      position.lastbeat_date  = Date.now();
       position.beats          = position.beats+1;
 
       position.save(function(error){
@@ -66,6 +89,8 @@ module.exports = function(app){
 
   // Routes
   app.get('/positions', allPositions);
+  app.get('/user/:user_id', getUserPositions);
+  app.get('/content/:content_id', getContentPositions);
   app.get('/position/:user_id/:content_id', getPosition);
   app.post('/position', newPosition);
   app.put('/position/:id', updatePosition);
