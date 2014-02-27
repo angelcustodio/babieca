@@ -39,7 +39,7 @@ module.exports = function(app){
         'content_id': request.params.content_id
       }, function(error, position){
         if(!error)
-          response.json(position.id);
+          response.json(position);
         else
           console.log('ERROR: ' + error);
       });
