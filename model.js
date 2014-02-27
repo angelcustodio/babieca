@@ -14,19 +14,19 @@ var mongoose = require('mongoose'),
       lapse: Number,
       firstbeat_date: Date,
       lastbeat_date: Date,
-      beats: Number,
-      rental_date: {
-        type: Date,
-        expireAfterSeconds: 30
-      },
-      purchase_date: {
-        type: Date,
-        expireAfterSeconds: 90
-      },
-      subscription_date: {
-        type: Date,
-        expireAfterSeconds: 200
-      }
+      beats: Number
+      // rental_date: {
+      //   type: Date,
+      //   expireAfterSeconds: 30
+      // },
+      // purchase_date: {
+      //   type: Date,
+      //   expireAfterSeconds: 90
+      // },
+      // subscription_date: {
+      //   type: Date,
+      //   expireAfterSeconds: 200
+      // }
     });
 
 module.exports = mongoose.model('ResumePlayback', positionSchema);

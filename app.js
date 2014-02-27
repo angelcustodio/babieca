@@ -11,7 +11,7 @@ var express  = require('express'),
 
 app.configure(function(){
   app.use(allowCrossDomain);
-  app.use(express.bodyParser());
+  app.use(express.json());
   app.use(express.methodOverride());
   app.use(app.router);
 });

@@ -46,13 +46,15 @@ module.exports = function(app){
   };
 
   newPosition = function(request, response){
-    if (request.body.transaction_type === 'rental'){
-      var rental_date_var = Date.now();
-    } else if (request.body.transaction_type === 'purchase'){
-      var purchase_date_var = Date.now();
-    } else if (request.body.transaction_type === 'subscription'){
-      var subscription_date_var = Date.now();
-    }
+
+    // if (request.body.transaction_type === 'rental'){
+    //   var rental_date_var = Date.now();
+    // } else if (request.body.transaction_type === 'purchase'){
+    //   var purchase_date_var = Date.now();
+    // } else if (request.body.transaction_type === 'subscription'){
+    //   var subscription_date_var = Date.now();
+    // }
+
     var position = new ResumePlayback({
       user_id:            request.body.user_id,
       content_id:         request.body.content_id,
@@ -60,10 +62,10 @@ module.exports = function(app){
       transaction_type:   request.body.transaction_type,
       lapse:              request.body.lapse,
       firstbeat_date:     Date.now(),
-      beats:              '1',
-      rental_date:         null || rental_date_var,
-      purchase_date:       null || purchase_date_var,
-      subscription_date:   null || subscription_date_var
+      beats:              '1'
+      // rental_date:         null || rental_date_var,
+      // purchase_date:       null || purchase_date_var,
+      // subscription_date:   null || subscription_date_var
     });
 
     position.save(function(error){
@@ -84,6 +86,9 @@ module.exports = function(app){
       position.save(function(error){
         if(error) console.log('ERROR: ' + error);
       });
+
+      response.send(position.beats);
+
     });
   };
 
