@@ -5,7 +5,7 @@ module.exports = function(app){
   allPositions = function(request, response){
     ResumePlayback.find(function(error, positions){
       if(!error)
-        response.send(positions);
+        response.json(positions);
       else
         console.log('ERROR: ' + error);
     });
@@ -16,7 +16,7 @@ module.exports = function(app){
         'user_id':    request.params.user_id
       }, function(error, positions){
         if(!error)
-          response.send(positions);
+          response.json(positions);
         else
           console.log('ERROR: ' + error);
       });
@@ -27,7 +27,7 @@ module.exports = function(app){
         'content_id':    request.params.content_id
       }, function(error, positions){
         if(!error)
-          response.send(positions);
+          response.json(positions);
         else
           console.log('ERROR: ' + error);
       });
@@ -39,7 +39,7 @@ module.exports = function(app){
         'content_id': request.params.content_id
       }, function(error, position){
         if(!error)
-          response.send(position.id);
+          response.json(position.id);
         else
           console.log('ERROR: ' + error);
       });
@@ -72,7 +72,7 @@ module.exports = function(app){
       if(error) console.log('ERROR: ' + error);
     });
 
-    response.send(position);
+    response.json(position);
 
   };
 
@@ -87,7 +87,7 @@ module.exports = function(app){
         if(error) console.log('ERROR: ' + error);
       });
 
-      response.send(position.beats);
+      response.json(position.beats);
 
     });
   };
