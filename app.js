@@ -4,7 +4,7 @@ var express  = require('express'),
     port     = 7000,
     allowCrossDomain = function(req, res, next) {
       res.header('Access-Control-Allow-Origin', '*'); // NOT SAFE FOR PRODUCTION
-      res.header('Access-Control-Allow-Methods', 'GET, PUT, POST');
+      res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, OPTIONS');
       res.header('Access-Control-Allow-Headers', 'Content-Type');
       next();
     };
