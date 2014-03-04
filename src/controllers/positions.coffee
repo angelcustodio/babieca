@@ -13,7 +13,7 @@ class Positions
       res.json(500, error: 'Positions::getAll')
 
 
-  # GET /positions/users/:user_id
+  # GET /user/:user_id
   getByUser: (req, res) ->
     try
       params =
@@ -27,7 +27,7 @@ class Positions
       res.json(500, error: 'Positions::getByUser')
 
 
-  # GET /positions/contents/:content_id
+  # GET /content/:content_id
   getByContent: (req, res) ->
     try
       params =
@@ -41,7 +41,7 @@ class Positions
       res.json(500, error: 'Positions::getByContent')
 
 
-  # GET /positions/users/:user_id/contents/:content_id
+  # GET /position/:user_id/:content_id
   getOne: (req, res) ->
     try
       params =
@@ -56,7 +56,7 @@ class Positions
       res.json(500, error: 'Positions::getOne')
 
 
-  # POST /positions
+  # POST /position
   createOne: (req, res) ->
     try
       {user_id, content_id, content_type, transaction_type, lapse} = req.body
@@ -79,7 +79,7 @@ class Positions
       res.json(500, error: 'Positions::createOne')
 
 
-  # PUT /positions/:id
+  # PUT /position/:id
   updateOne: (req, res) ->
     try
       PositionModel.findById req.params.id, (err, position) ->
