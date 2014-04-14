@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "A simple way to have a crossplatform resume playback feature",
   "author": "Angel Custodio <ancude@gmail.com>",
-  "main": "app.js",
+  "bin": {
+    "babieca": "./bin/babieca"
+  },
   "dependencies":
     {
       "express": "latest",
