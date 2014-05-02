@@ -1,4 +1,9 @@
 express = require 'express'
+logger = require 'morgan'
+compress = require 'compression'
+bodyParser = require 'body-parser'
+methodOverride = require 'method-override'
+errorHandler = require 'errorhandler'
 
 allowCrossDomain = (req, res, next) ->
   res.header 'Access-Control-Allow-Origin', '*'
@@ -8,24 +13,17 @@ allowCrossDomain = (req, res, next) ->
 
 middleware = (app) ->
 
-  app.use express.logger 'dev'
-
-  app.use express.compress()
-  app.use express.json()
-  app.use express.methodOverride()
-  app.use express.urlencoded()
-
+  app.use logger
+  app.use compress
+  app.use methodOverride
+  app.use errorHandler
+  app.use bodyParser
   app.use allowCrossDomain
-
-  app.use app.router
 
   app.use (req, res) ->
     res.json 404,
       error:
         status: 404
         message: 'Not found'
-
-  app.use express.errorHandler()
-
 
 module.exports = middleware
