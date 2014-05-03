@@ -13,17 +13,11 @@ allowCrossDomain = (req, res, next) ->
 
 middleware = (app) ->
 
-  app.use logger
-  app.use compress
-  app.use methodOverride
-  app.use errorHandler
-  app.use bodyParser
-  app.use allowCrossDomain
-
-  app.use (req, res) ->
-    res.json 404,
-      error:
-        status: 404
-        message: 'Not found'
+	app.use logger 'dev'
+	app.use compress()
+	app.use bodyParser()
+	app.use methodOverride()
+	app.use allowCrossDomain
+	app.use errorHandler()
 
 module.exports = middleware
