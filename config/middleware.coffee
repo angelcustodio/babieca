@@ -13,7 +13,7 @@ allowCrossDomain = (req, res, next) ->
 
 middleware = (app) ->
 
-	app.use logger 'dev'
+	app.use logger()
 	app.use compress()
 	app.use bodyParser()
 	app.use methodOverride()
