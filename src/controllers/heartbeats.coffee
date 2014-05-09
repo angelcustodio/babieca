@@ -47,6 +47,7 @@ class Heartbeats
       console.log(error)
       res.json(500, error: require('util').inspect(error))
 
-
+  nothing: (req, res) ->
+    res.json {"so":"nothing"}
 
 module.exports = Heartbeats
