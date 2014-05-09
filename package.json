@@ -14,6 +14,8 @@
       "compression": "latest",
       "body-parser": "latest",
       "method-override": "latest",
-      "errorhandler": "latest"
+      "errorhandler": "latest",
+      "redis": "latest",
+      "hiredis": "0.1.16"
     }
 }

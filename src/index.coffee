@@ -4,6 +4,8 @@ app = express()
 
 # Load models
 require('./models/position')
+require('./models/heartbeat')
+
 
 # Load config
 require('../config/')(app)
